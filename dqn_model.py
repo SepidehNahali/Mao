@@ -89,7 +89,7 @@ class Dueling_DQN(nn.Module):
 # 215040
         # self.fc_input_dim = self.feature_size()
         self.value_stream = nn.Sequential(
-            nn.Linear(215040, 520),
+            nn.Linear(368640, 520),
             nn.ReLU(),
             nn.Linear(520, 128),
             nn.ReLU(),
