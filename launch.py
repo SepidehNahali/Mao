@@ -140,7 +140,7 @@ parser.add_argument('-n',
 #         print("CUDA Device: %d" % torch.cuda.current_device())
 # if vars(args)['e'] == 1:
 # exp1(vars(args)['n'])
-exp1('Mao Version')
+exp1('Mao2 Version')
 # train(env)
 
 # if __name__ == '__main__':
