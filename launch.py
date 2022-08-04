@@ -25,7 +25,7 @@ def exp1(name):
     new_job_rate = 0.6
     target_num_job_done = 150
     delay_penalty = -1
-    hold_penalty = -2
+    hold_penalty = -1
     dismiss_penalty = -1
 
 
@@ -43,7 +43,7 @@ def exp1(name):
                     target_num_job_done=target_num_job_done,
                     max_num_timesteps=90000)
 
-    BATCH_SIZE = 64
+    BATCH_SIZE = 10
     REPLAY_BUFFER_SIZE = 30000
     FRAME_HISTORY_LEN = 1
     TARGET_UPDATE_FREQ = 120
