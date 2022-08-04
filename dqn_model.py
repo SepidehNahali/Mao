@@ -107,7 +107,7 @@ class Dueling_DQN(nn.Module):
 
 
         # self.embedding_dropout = nn.Dropout2d(0.1)
-        # self.lstm1 = nn.Linear(71680, 128)
+        # self.lstm1 = nn.Linear(368640, 128)
         # self.lstm2 = nn.Linear(128*2, 64 )
 
         # self.attention_layer = Attention(128, maxlen)
