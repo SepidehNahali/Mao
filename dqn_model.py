@@ -73,7 +73,7 @@ class Attention(nn.Module):
 class Dueling_DQN(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(Dueling_DQN,self).__init__()
-        # print('input_dim, output_dim:',input_dim, output_dim)
+        # print('input_dim, output_dim:',input_dim, output_dim)#(max_job_len:30, 112, 1) jobqueue-max_len:20,(10, 112, 1) 20
         drp = 0.4
         self.input_dim = input_dim
         self.output_dim = output_dim
@@ -81,21 +81,21 @@ class Dueling_DQN(nn.Module):
         self.embedding_dim=256
 
         
-        self.embed = nn.Embedding(20,64)
+        self.embed = nn.Embedding(output_dim,64)
         self.falt = nn.Flatten()
-        # print('self.embed',self.embed)
+        print('self.embed',self.embed)
 
         # print('self.conv :',self.conv ,'input_dim[2]:',input_dim[2])
-
+# 215040
         # self.fc_input_dim = self.feature_size()
         self.value_stream = nn.Sequential(
-            nn.Linear(71680, 520),
+            nn.Linear(215040, 520),
             nn.ReLU(),
-            nn.Linear(520, 20),
+            nn.Linear(520, 128),
             nn.ReLU(),
-            nn.Linear(20, 20),
+            nn.Linear(128, 128),
             nn.ReLU(),
-            nn.Linear(20, self.output_dim),
+            nn.Linear(128, self.output_dim),
 
         )
        
