@@ -81,8 +81,8 @@ class Dueling_DQN(nn.Module):
         self.embedding_dim=256
 
         
-        self.embed = nn.Embedding(output_dim,64)
-        self.falt = nn.Flatten()
+        self.embed = nn.Embedding(self.input_dim,64)
+        self.flat = nn.Flatten()
         print('self.embed',self.embed)
 
         # print('self.conv :',self.conv ,'input_dim[2]:',input_dim[2])
@@ -122,7 +122,7 @@ class Dueling_DQN(nn.Module):
     def forward(self, x):
         x = torch.tensor(x).to(torch.int64)
         features = self.embed(x) # torch.Size([1,32,9,35])
-        # features = self.falt(features)
+        features = self.falt(features)
         # print('after flatt',features.size())#with pooling =1
         # features = features.view(features.size(0), -1)  (1,10080)
 
