@@ -779,21 +779,19 @@ class Env(ABC):
                    
 
 
+
         for j in self.jobqueue[self.get_running_jobs()]:
             reward += j.v_m
             if len(j.gpus[0]) != j.gpu_request:
-                reward += penalty_assigned_gpus(job=j, gpus_per_rack=self.gpus_per_rack, ret_reducer=self.pa.ret_reducer) * self.pa.delay_penalty
+                reward +=  self.pa.delay_penalty/ float(j.job_len)
             # if j.stepcounter == 0:
             #     reward += j.job_len * j.gpu_request
         for j in self.jobqueue[self.get_waiting_jobs()]:
-            reward += calc_job_minbatch_speed(job=j, gpus_per_rack=self.gpus_per_rack, ret_reducer=self.pa.ret_reducer, singleormulti='single') * self.pa.hold_penalty
+            reward +=  self.pa.hold_penalty / float(j.job_len)
 
         for j in self.backlog:
-            reward += calc_job_minbatch_speed(job=j, gpus_per_rack=self.gpus_per_rack, ret_reducer=self.pa.ret_reducer, singleormulti='single') * self.pa.dismiss_penalty
-        
-        
-#         reward*=(self.pa.num_racks_per_cluster*self.pa.num_machines_per_rack*self.pa.num_gpus_per_machine)-len(np.where(self.resources == -1)[0])
-#         reward = np.clip(reward, -300, 100)
+            reward +=  self.pa.dismiss_penalty/ float(j.job_len)
+#         lip(reward, -300, 100)
 
         
         return reward
